@@ -1,0 +1,35 @@
+---
+layout: post
+title: "Coding with an Accent"
+date: 2012-04-28 16:58
+comments: true
+categories: programming
+published: false
+---
+
+Here is one little tip you might not know: programming languages, like spoken languages, have accents.
+
+Well, maybe I'm stretching the metaphor a bit. But only a bit. So bear with me while I dissert a bit about spoken languages. I promise it won't take too long.
+
+h2. A brief detour on Spoken Languages
+
+I was born in the southern part of Spain. That region, known as Andalusia, has it's own accent. It has a distinct intonation has certain slang, but its most prominent characteristic is the omission of lots. I'm guessing here, but to other Spanish speakers Andalusian Spanish must sound like a mixture of Scottish and Texas English to an Oxford-English speaker.
+This all matters because I was one of those children who could not pronounce the "s". I just didn't get how to position my mouth to emit the sound.
+
+In other words - to a lot of Spanish speakers Andalusian sounds kind of funny. As in "comical", not as in "amazingly alien and sexy", like some Americans find British English, or so I heard.
+
+The thing is, as a child, I didn't know how to emit the "s" sound - at all. *Zo yez, az a child I zpoke like thiz*.
+
+For some reason, this was incredibly funny for the Andalusians themselves! My parents didn't make any efforts to correct my pronunciation (I guess they thought of it as "cute", the sadists). But yeah, for a time I was the laughing stock of the laughing stock.
+
+I eventually figured out how to move my mouth muscles and expel the air in the right way, to emit the sound. That was difficult, but not impossible. The part where I got
+
+
+
+This all matters because I was one of those children who could not pronounce the "s". I just didn't get how to position my mouth to emit the sound.
+
+When we got our first TV with two channels (yeah, and we didn't have internet neither. Get off my lawn) I was exposed to my first *accent*.
+
+
+
+I'm writing this here because no one told me at the university when I studied.
