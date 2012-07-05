@@ -2,7 +2,7 @@
 // Variables to customize the look and feel of Bootstrap
 // -----------------------------------------------------
 
-
+/*
 
 // GLOBAL VALUES
 // --------------------------------------------------
@@ -196,3 +196,16 @@ $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth 
 // -------------------------
 $fluidGridColumnWidth:    6.382978723% !default;
 $fluidGridGutterWidth:    2.127659574% !default;
+
+*/
+
+article header .meta {
+  margin-top: 1em;
+  float: right;
+}
+
+.for-nav{
+  padding: 8px 0;
+}
+
+
