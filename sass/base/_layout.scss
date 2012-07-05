@@ -92,6 +92,7 @@ body {
 #content {
   overflow: hidden;
   > div, > article { width: 100%; }
+  @extend .group;
 }
 
 aside.sidebar {
@@ -121,6 +122,10 @@ body.sidebar-footer {
   .toggle-sidebar { display: none; }
 }
 
+#main {
+  @extend .group;
+}
+
 @media only screen and (min-width: 550px) {
   body > header { font-size: $header-font-size; }
 }
@@ -131,12 +136,10 @@ body.sidebar-footer {
   body { -webkit-text-size-adjust: auto; }
   body > header { font-size: $header-font-size * 1.2; }
   #main {
-    @extend .group;
     padding: 0;
     margin: 0 auto;
   }
   #content {
-    @extend .group;
     overflow: visible;
     margin-right: $sidebar-width-medium;
     position: relative;
@@ -149,7 +152,6 @@ body.sidebar-footer {
     }
   }
   aside.sidebar {
-    @extend .group;
     width: $sidebar-width-medium - $sidebar-pad-medium*2;
     padding: 0 $sidebar-pad-medium $sidebar-pad-medium;
     background: none;
@@ -180,7 +182,6 @@ body.sidebar-footer {
     padding: 1.2em $sidebar-pad-wide $sidebar-pad-wide;
     .collapse-sidebar & {
       padding: { left: $pad-wide; right: $pad-wide; }
-      @extend .group;
     }
   }
 }
