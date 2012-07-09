@@ -1,0 +1,54 @@
+body{
+  padding-top: 150px;
+}
+
+article header .meta {
+  margin-top: 1em;
+  float: right;
+}
+
+.for-nav{
+  padding: 8px 0;
+}
+
+.navbar-inner {
+  background-image: none;
+}
+
+.navbar {
+  .container {
+    position: relative;
+  }
+  .brand {
+    font-size: 40px;
+  }
+  .navbar-text {
+    display: block;
+    position: absolute;
+    left: 2px;
+    top: 40px;
+  }
+  .nav > li > a {
+    $navbarFontSize: 20px;
+    $navbarHeight: 140px;
+    font-size: $navbarFontSize;
+    padding: (($navbarHeight - $navbarFontSize) / 2 - 1) 10px (($navbarHeight - $navbarFontSize) / 2 + 1);
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 979px) {
+  .navbar .container {
+    width: 940px;
+  }
+}
+
+@media (min-width: 980px) {
+  .navbar .container {
+    width: 1170px;
+  }
+}
+
