@@ -1,3 +1,10 @@
+@import "compass/css3";
+
+
+a:hover {
+  text-decoration: none;
+}
+
 article header .meta {
   display: block;
   margin-top: 1.5em;
@@ -34,11 +41,28 @@ article header .meta {
     font-size: $navbarFontSize;
     padding: (($navbarHeight - $navbarFontSize) / 2 - 1) 10px (($navbarHeight - $navbarFontSize) / 2 + 1);
   }
+  .btn-navbar-plus {
+    font-size: 60px;
+    display: block;
+    float: right;
+    margin: 60px 20px 20px 20px;
+    @include transition-property(all);
+    @include transition-duration(500ms);
+    @include transition-timing-function(ease-in-out);
+    &:hover {
+      color: black;
+    }
+    i {
+      cursor: pointer;
+    }
+  }
+  .btn-navbar-plus.open {
+    @include rotate(135deg);
+    color: black;
+  }
+
 }
 
-a:hover {
-  text-decoration: none;
-}
 
 
 @media (max-width: 979px) {
