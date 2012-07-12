@@ -1,5 +1,8 @@
 article header .meta {
-  display: none;
+  display: block;
+  margin-top: 1.5em;
+  float: right;
+  font-size: 0.8em;
 }
 
 .for-nav{
@@ -18,7 +21,12 @@ article header .meta {
     font-size: 25px;
   }
   .navbar-text {
-    display: none;
+    display: block;
+    position: absolute;
+    padding-left: 8px;
+    margin: 0 0 0 -5px;
+    top: 55px;
+    color: black;
   }
   .nav > li > a {
     $navbarFontSize: 20px;
@@ -55,20 +63,6 @@ a:hover {
     .brand {
       font-size: 50px;
     }
-    .navbar-text {
-      display: block;
-      position: absolute;
-      padding-left: 8px;
-      margin: 0 0 0 -5px;
-      top: 55px;
-      color: black;
-    }
-  }
-  article header .meta {
-    display: block;
-    margin-top: 1.5em;
-    float: right;
-    font-size: 0.8em;
   }
 }
 
@@ -83,12 +77,6 @@ a:hover {
     .brand {
       font-size: 25px;
     }
-    .navbar-text {
-      display: none;
-    }
-  }
-  article header .meta {
-    display: none;
   }
 }
 

@@ -9,7 +9,7 @@
         {% endif %}
       </div>
     {% unless page.meta == false %}
-      <div class="span4">
+      <div class="span4 hidden-phone">
         <div class="meta">
           {% include post/date.html %}{{ time }}
           {% if site.disqus_short_name and page.comments != false and site.disqus_show_comment_count == true %}
