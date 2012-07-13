@@ -58,9 +58,10 @@
 @import "hero-unit";
 @import "font-awesome";
 
+// Responsive layers
+@import "responsive";
+
 // Utility classes
 @import "utilities"; // Has to be last to override when necessary
-
-@import "responsive";
 
 @import "custom";

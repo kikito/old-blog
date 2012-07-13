@@ -1,3 +1,4 @@
+@import "variables";
 @import "compass/css3";
 
 
@@ -21,31 +22,36 @@ article header .meta {
 }
 
 .navbar {
-  h1 {
-    position: relative;
+  .brand{
+    margin: 0;
   }
-  .banner {
-    font-size: 25px;
-  }
-  .navbar-text {
-    display: block;
+  .sub-brand {
     position: absolute;
-    padding-left: 8px;
-    margin: 0 0 0 -5px;
-    top: 55px;
+    bottom: 0;
     color: black;
+    font-size: 1.2em;
+    font-weight: 200;
+    padding: 10px 23px;
   }
   .nav > li > a {
     $navbarFontSize: 20px;
-    $navbarHeight: 154px;
     font-size: $navbarFontSize;
-    padding: (($navbarHeight - $navbarFontSize) / 2 - 1) 10px (($navbarHeight - $navbarFontSize) / 2 + 1);
+    padding: (($navbarHeight - $navbarFontSize) / 2 - 2) 20px (($navbarHeight - $navbarFontSize) / 2 + 2);
+    text-shadow: none;
+    font-family: $dosisFontFamily;
+    font-weight: 200;
+    font-size: 2em;
   }
   .btn-navbar-plus {
-    font-size: 60px;
+    color: white;
+    $navbarBtnFontSize: 60px;
+    font-size: $navbarBtnFontSize;
+    line-height: $navbarBtnFontSize;
+    height: $navbarBtnFontSize;
+    text-align: center;
+    padding: (($navbarHeight - $navbarBtnFontSize) / 2 - 2) 20px (($navbarHeight - $navbarBtnFontSize) / 2 + 2);
     display: block;
     float: right;
-    margin: 60px 20px 20px 20px;
     @include transition-property(all);
     @include transition-duration(500ms);
     @include transition-timing-function(ease-in-out);
@@ -54,6 +60,7 @@ article header .meta {
     }
     i {
       cursor: pointer;
+      line-height: 28px; // totally manually calculated
     }
   }
   .btn-navbar-plus.open {
@@ -68,14 +75,25 @@ article header .meta {
 @media (max-width: 979px) {
   body{
     padding-top: 0;
+    padding-left: 20px;
+    padding-right: 20px;
   }
+  .container {
+    width: auto;
+  }
+  .navbar-fixed-top{
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
   .navbar {
-    .brand {
-      font-size: 40px;
+    .navbar-inner {
+      padding: 0;
     }
-    .navbar-text {
-      top: 44px;
-      left: 5px;
+    .brand {
+      $elementHeight: 40px;
+      font-size: $elementHeight;
+      padding: (($navbarHeight - $elementHeight) / 2 - 2) 20px (($navbarHeight - $elementHeight) / 2 + 2) ;
     }
   }
 }
@@ -89,21 +107,33 @@ article header .meta {
       width: 100%;
     }
     .brand {
-      font-size: 50px;
+      $elementHeight: 50px;
+      font-size: $elementHeight;
+      padding: (($navbarHeight - $elementHeight) / 2 - 2) 20px (($navbarHeight - $elementHeight) / 2 + 2) ;
     }
   }
 }
 
 @media (min-width: 1170px){
-  .navbar .container {
-    width: 1170px;
+  .navbar{
+    .container {
+      width: 1170px;
+    }
+    .brand {
+      padding-left: 0;
+    }
+    .sub-brand {
+      padding-left: 0;
+    }
   }
 }
 
 @media (max-width: 768px) {
   .navbar {
     .brand {
-      font-size: 25px;
+      $elementHeight: 25px;
+      font-size: $elementHeight;
+      padding: (($navbarHeight - $elementHeight) / 2 - 2) 20px (($navbarHeight - $elementHeight) / 2 + 2) ;
     }
   }
 }
