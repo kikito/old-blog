@@ -1,6 +1,12 @@
 @import "variables";
 @import "compass/css3";
 
+@mixin centerOnNav($elementHeight) {
+  font-size: $elementHeight;
+  line-height: $elementHeight;
+  height: $elementHeight;
+  padding: (($navbarHeight - $elementHeight) / 2 - 2) 20px (($navbarHeight - $elementHeight) / 2 + 2);
+}
 
 a:hover {
   text-decoration: none;
@@ -8,9 +14,10 @@ a:hover {
 
 article header .meta {
   display: block;
-  margin-top: 1.5em;
   float: right;
-  font-size: 0.8em;
+  font-size: 0.5em;
+  line-height: 3em;
+  font-weight: 200;
 }
 
 .for-nav{
@@ -34,27 +41,22 @@ article header .meta {
     padding: 10px 23px;
   }
   .nav > li > a {
-    $navbarFontSize: 20px;
-    font-size: $navbarFontSize;
-    padding: (($navbarHeight - $navbarFontSize) / 2 - 2) 20px (($navbarHeight - $navbarFontSize) / 2 + 2);
+    @include centerOnNav(25px);
     text-shadow: none;
     font-family: $dosisFontFamily;
     font-weight: 200;
     font-size: 2em;
   }
   .btn-navbar-plus {
-    color: white;
-    $navbarBtnFontSize: 60px;
-    font-size: $navbarBtnFontSize;
-    line-height: $navbarBtnFontSize;
-    height: $navbarBtnFontSize;
-    text-align: center;
-    padding: (($navbarHeight - $navbarBtnFontSize) / 2 - 2) 20px (($navbarHeight - $navbarBtnFontSize) / 2 + 2);
-    display: block;
-    float: right;
+    @include centerOnNav(65px);
     @include transition-property(all);
     @include transition-duration(500ms);
     @include transition-timing-function(ease-in-out);
+    color: white;
+    text-align: center;
+    display: block;
+    float: right;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
     &:hover {
       color: black;
     }
@@ -71,31 +73,12 @@ article header .meta {
 }
 
 
+@media (max-width: 480px) {
+  .navbar .brand { @include centerOnNav(25px); }
+}
 
-@media (max-width: 979px) {
-  body{
-    padding-top: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .container {
-    width: auto;
-  }
-  .navbar-fixed-top{
-    margin-left: -20px;
-    margin-right: -20px;
-  }
-
-  .navbar {
-    .navbar-inner {
-      padding: 0;
-    }
-    .brand {
-      $elementHeight: 40px;
-      font-size: $elementHeight;
-      padding: (($navbarHeight - $elementHeight) / 2 - 2) 20px (($navbarHeight - $elementHeight) / 2 + 2) ;
-    }
-  }
+@media (min-width: 481px) and (max-width: 979px) {
+  .navbar .brand { @include centerOnNav(40px); }
 }
 
 @media (min-width: 980px) {
@@ -107,9 +90,7 @@ article header .meta {
       width: 100%;
     }
     .brand {
-      $elementHeight: 50px;
-      font-size: $elementHeight;
-      padding: (($navbarHeight - $elementHeight) / 2 - 2) 20px (($navbarHeight - $elementHeight) / 2 + 2) ;
+      @include centerOnNav(50px);
     }
   }
 }
@@ -123,18 +104,9 @@ article header .meta {
       padding-left: 0;
     }
     .sub-brand {
-      padding-left: 0;
+      padding-left: 3px;
     }
   }
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    .brand {
-      $elementHeight: 25px;
-      font-size: $elementHeight;
-      padding: (($navbarHeight - $elementHeight) / 2 - 2) 20px (($navbarHeight - $elementHeight) / 2 + 2) ;
-    }
-  }
-}
 

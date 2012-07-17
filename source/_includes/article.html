@@ -1,23 +1,16 @@
 {% unless page.no_header %}
   <header class="page-header">
-    <div class="row-fluid">
-      <div class="span8">
-        {% if index %}
-          <h1 class="entry-title"><a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a></h1>
-        {% else %}
-          <h1 class="entry-title">{% if site.titlecase %}{{ page.title | titlecase }}{% else %}{{ page.title }}{% endif %}</h1>
+    <h1 class="entry-title">
+      <a href="{{ root_url }}{{ post.url }}">{% if site.titlecase %}{{ post.title | titlecase }}{% else %}{{ post.title }}{% endif %}</a>
+      {% unless page.meta == false %}
+      <span class="pull-right hidden-phone meta">
+        {% include post/date.html %}{{ time }}
+        {% if site.disqus_short_name and page.comments != false and site.disqus_show_comment_count == true %}
+        / <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread">Comments</a>
         {% endif %}
-      </div>
-    {% unless page.meta == false %}
-      <div class="span4 hidden-phone">
-        <div class="meta">
-          {% include post/date.html %}{{ time }}
-          {% if site.disqus_short_name and page.comments != false and site.disqus_show_comment_count == true %}
-            / <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread">Comments</a>
-          {% endif %}
-        </div>
-      </div>
-    {% endunless %}
+      </span>
+      {% endunless %}
+    </h1>
   </header>
 {% endunless %}
 {% if index %}
