@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Coding with an Accent - Enrique García Cota</title>
+  <meta name="author" content="Enrique García Cota">
+
+  
+  <meta name="description" content="Here is one little tip you might not know: programming languages, like spoken languages, have accents.
+Well, maybe I&#8217;m stretching the metaphor &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kikito.github.com/blog/2012/07/19/coding-with-an-accent">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/kikito.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Enrique García Cota" type="application/atom+xml">
+  
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn-navbar-plus hidden-desktop" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-plus"></i></a>
+
+      <h1>
+        <a class="brand" href="/">Enrique García Cota</a>
+      </h1>
+      <h2 class="sub-brand visible-desktop">Freelance Ruby on Rails developer</h2>
+
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+  <li><a href="/">Blog</a></li>
+  <li class="visible-desktop"><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><i class="icon-rss"></i></a></li>
+</ul>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    <h1 class="entry-title">
+      <a href="">Liquid error: undefined method `titlecase' for nil:NilClass</a>
+      
+      <span class="pull-right hidden-phone meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-19T00:00:00+02:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
+        
+        / <a href="#disqus_thread">Comments</a>
+        
+      </span>
+      
+    </h1>
+  </header>
+
+
+<div class="entry-content"><p>Here is one little tip you might not know: programming languages, like spoken languages, have accents.</p>
+<p>Well, maybe I&#8217;m stretching the metaphor a bit. But only a bit. So bear with me while I dissert a bit about spoken languages. I promise it won&#8217;t take too long.</p>
+<h2>A brief detour on Spoken Languages</h2>
+<p>I was born in the southern part of Spain. That region, known as Andalusia, has it&#8217;s own accent. It has a distinct intonation has certain slang, but its most prominent characteristic is the omission of phonemes. I guess, to other Spanish speakers, Andalusian Spanish sounds like a mixture of Scottish and Texas English. It is also kindof considered &#8220;funny by default&#8221;. Some comediants use that accent to tell jokes, even if they don&#8217;t usually speak like that.</p>
+<p>In addition to Andalusian, after spending 9 years in Madrid, I have a separate &#8220;compartment&#8221; in my head for Madrid&#8217;s accent, which we could call &#8220;neutral Spanish&#8221;. I change between Andalusian and neutral depending on who I am speaking to.</p>
+<p>I also speak English and French. I only have one accent for each of those, but I know them well enough to notice how different accents sound.</p>
+<p>This linguistic background has allowed me to notice certain &#8230; differences here and there. Besides the obvious ones, like phonetical or grammatical rules, I mean; more of the semantic kind.</p>
+<p>For example, French people (at least people from Paris, which are the ones I&#8217;m more familiar with) don&#8217;t even say &#8220;we&#8221;. I mean, they have a word for it &#8211; &#8220;nous&#8221;. But they never use it when colloquially speaking. Instead, they use the impersonal &#8220;on&#8221;, which roughtly translates to &#8220;it&#8221; (as in &quot;It is said that&#8230; &quot;). So, when they mean &#8220;let&#8217;s go shopping&#8221; they say something like &#8220;it should go shopping&#8221;. Crazy, right? Well, they do it all the time.</p>
+<p>What can I say about English? It is so widely used that there are so many things one can say. By hearing how they pronnouce the letter &#8220;r&#8221;, one can say whether someone is from one side or the other of the Atlantic. I wonder if some day &#8220;I wanna go&#8221; will be considered valid English.</p>
+<p>In Spain, no one says good-bye any more. There is a word for it, of course &#8211; &#8220;Adiós&#8221;. But no one says it. Everyone says &#8220;see you soon&#8221; instead. Even if it&#8217;s longer. Society has decided that &#8220;Adiós&#8221; is too &#8230; hard, I suppose.</p>
+<p>They say eskimos have 7 different words for &#8220;snow&#8221;. I don&#8217;t know if it&#8217;s true. I know that my girlfriend, who grew in the northern part of Spain, has 1 more word than me for saying &#8220;it rains&#8221;, in Spanish.</p>
+<h2>The Engineer View</h2>
+<p>I like to think that all men of science share a special sense of beauty. Instead of (or in addition to) being able to find beauty in a work of art, we find it in efficient, neatly organized systems and tools.</p>
+<p>When I look at spoken languages from the point of view of an engineer, I find them a bit &#8230; lacking. Spoken languages are not a very efficient tool for communicating concepts. They require more effort than it&#8217;s really necessary.</p>
+<p>Spanish verbs are crazily ornated. English does it better, but still requires too much memory &#8211; why say &#8220;I am, you are, he is&#8221;, when you could say &#8220;I be, you be, he be&#8221;?. Speaking of English, its pronnounciation rules have too many exceptions and things that one has to remember &#8211; tomato vs potato. That one is much simpler in Spanish. My biggest grip with French is that even if lots of words are pronnounced the same way, they are written differently. The fact that the word &#8220;bureaucracy&#8221; has its roots on that particular language makes a lot of sense.</p>
+<h2>Programming languages as tools</h2>
+<p>When I look at programming languages, I conserve that sense of beauty. That is why I consider myself very fortunate to be able to work with a programming language that I find aesthetically pleasant as an engineer. I enjoy using the language, and seeing where it takes me.</p>
+<p>Lua is another language that I enjoy. It is smaller than ruby, and certainly less powerful, but the compromises it makes reflect what I think an embedded language should do.</p>
+<p>Javascript is so ubiquous it hurts!</p>
+<p>And of course there are plenty of others. Lisp. Haskell. Erlang. Html. Even <span class="caps">CSS</span>.</p>
+<p>And yet, my sense of beauty is never satisfied. Ruby, which is my favourite, is slow in some cases. The way it handles blocks troubles me. Lua has implicit global variables, and its string manipulation library is too barebones. Javascript &#8230; well, I used to enjoy it. After reading <a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">Javascript: the good parts</a> , however, I can&#8217;t help but keep noticing the bad parts. Lisp doesn&#8217;t feel like a language, it feels like raw <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree"><span class="caps">AST</span></a> manipulation. <span class="caps">PHP</span>&#8230; don&#8217;t get me started on <span class="caps">PHP</span>.</p>
+<p>The point is, I have grudges with all of them. It would seem that I am doomed to never be satisfied.</p>
+<h2>The accent in programming languages</h2>
+<p>But I wanted to talk about the accent in programming languages. As I was saying before, I think that there are &#8220;semantic differences&#8221; between spoken languages. And I think those differences are even more pronnounced in programming languages.</p>
+<p>The first programming language I ever learnt was <span class="caps">BASIC</span>, in the mighty <a href="http://en.wikipedia.org/wiki/ZX_Spectrum#ZX_Spectrum.2B">Spectrum 48k+</a> . Much later, in the University, I learnt C. And I programmed C exactly like I programmed <span class="caps">BASIC</span> before. Then I learnt Java &#8230; and yet, I managed to program it as if it was <span class="caps">BASIC</span>. Only though time, and gradual effort, I managed to &#8220;get&#8221; this new &#8220;way of thinking&#8221; called &#8220;Object orientation&#8221;.</p>
+<p>&#8230; and then I started to do Object Orientation in plain C. Which was a mistake.</p>
+<p>I&#8217;ve needed a lot of time to realize that every programming language has its strenghts; and they are often not easily &#8220;exportable&#8221;. This is what I call the &#8220;nature&#8221; of a language. This &#8220;nature&#8221; is not necessarily related with the language&#8217;s grammar rules. For example, Javascript has acquired an &#8220;asyncronous nature&#8221; recently, thanks to <a href="http://nodejs.org">node.js</a> .</p>
+<p>To get the nature of a programming language, you probably should not use a grammar book. You will need a book which concentrates on &#8220;idiomatic rules&#8221; instead. Or, you could spend an inordinate amount of time reading other people&#8217;s code.</p>
+<p>So, when you learn your next programming language, don&#8217;t stop after you learn the basic grammar rules. Try to concentrate on whether people say &#8220;Adiós&#8221; with it. Or how many ways it has for saying &#8220;snow&#8221;.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Enrique García Cota</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-19T00:00:00+02:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kikito.github.com/blog/2012/07/19/coding-with-an-accent/" data-via="otikik" data-counturl="http://kikito.github.com/blog/2012/07/19/coding-with-an-accent/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/05/09/installing-go-in-ubuntu/" title="Previous Post:
+        Installing Go in Ubuntu using the PPA">&laquo; Installing Go in Ubuntu using the PPA</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/blog/2012/07/26/bootstrapping-a-mac-for-development/"
+        title="Next Post: Bootstrapping a mac for development">Bootstrapping a mac for development
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    <section class="well for-nav">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/bootstrapping-a-mac-for-development/">Bootstrapping a mac for development</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/coding-with-an-accent/">Coding with an Accent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/09/installing-go-in-ubuntu/">Installing Go in Ubuntu using the PPA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/03/cool-stuff-vs-yak-shaving/">Cool Stuff vs Yak Shaving</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/16/small-functions-are-good-for-the-universe/">Small Functions are Good for the Universe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section class="well for-nav">
+  <ul id="tweets" class="nav nav-list">
+    <li class="nav-header">Latest Tweets</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      getTwitterFeed("otikik", 4, false);
+    });
+  </script>
+  <script src="/javascripts/asides/twitter.js" type="text/javascript"> </script>
+  <div class="nav-list">
+    
+      <a href="http://twitter.com/otikik" class="btn"><i class="icon-twitter"></i> Follow @otikik</a>
+    
+  </div>
+
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - Enrique García Cota -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'binary-solo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kikito.github.com/blog/2012/07/19/coding-with-an-accent/';
+        var disqus_url = 'http://kikito.github.com/blog/2012/07/19/coding-with-an-accent/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

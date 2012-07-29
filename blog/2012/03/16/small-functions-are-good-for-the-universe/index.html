@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Small Functions are Good for the Universe - Enrique García Cota</title>
+  <meta name="author" content="Enrique García Cota">
+
+  
+  <meta name="description" content="This is a copy of a post I did some time ago in the LÖVE, which someone kindly reminded me of today. Why is it forbidden for a function to do two &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kikito.github.com/blog/2012/03/16/small-functions-are-good-for-the-universe">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/kikito.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Enrique García Cota" type="application/atom+xml">
+  
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn-navbar-plus hidden-desktop" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-plus"></i></a>
+
+      <h1>
+        <a class="brand" href="/">Enrique García Cota</a>
+      </h1>
+      <h2 class="sub-brand visible-desktop">Freelance Ruby on Rails developer</h2>
+
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+  <li><a href="/">Blog</a></li>
+  <li class="visible-desktop"><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><i class="icon-rss"></i></a></li>
+</ul>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    <h1 class="entry-title">
+      <a href="">Liquid error: undefined method `titlecase' for nil:NilClass</a>
+      
+      <span class="pull-right hidden-phone meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-16T01:19:00+01:00" pubdate data-updated="true">Mar 16<span>th</span>, 2012</time>
+        
+        / <a href="#disqus_thread">Comments</a>
+        
+      </span>
+      
+    </h1>
+  </header>
+
+
+<div class="entry-content"><blockquote>
+<p>This is a copy of <a href="https://love2d.org/forums/viewtopic.php?t=2826&amp;p=33948#p33950">a post</a> I did some time ago in the LÖVE, which someone kindly reminded me of today.</p>
+</blockquote>
+<h2>Why is it forbidden for a function to do two different things?</h2>
+<p>There are many reasons. The first one is that functions are supposed to be reusable. If you divide a big function into smaller functions, you can reuse those smaller functions in other places. The other reason is that by giving proper names to those functions, your code looks more like English and less than machine code. It&#8217;s easier to understand for humans.</p>
+<p>A big function is like a landscape that one has to explore in order to &#8220;understand&#8221;. When you have smaller functions with significant names, those names act as &#8220;signposts&#8221; indicating where the code &#8220;goes&#8221; to humans.</p>
+<h2>What would you use instead?</h2>
+<p>If a function does two things, you divide it in two functions, give those functions proper, significant, pronounceable names, and call those functions from the original one.</p>
+<p>For example, if you have a big function like this one:</p>
+<p>(Note: I&#8217;ll be using my class library, middleclass, tangentially, just to show how a good design and object orientation facilitate making stuff)</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">t</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span><span class="n">d</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">cd</span> <span class="o">=</span> <span class="nb">math.huge</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">p</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">Game</span><span class="p">.</span><span class="n">players</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">dx</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span>
+</span><span class='line'>    <span class="n">dy</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span>
+</span><span class='line'>    <span class="n">d</span> <span class="o">=</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">dy</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">cd</span> <span class="k">then</span>
+</span><span class='line'>      <span class="n">t</span> <span class="o">=</span> <span class="n">p</span>
+</span><span class='line'>      <span class="n">cd</span> <span class="o">=</span> <span class="n">d</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="n">t</span> <span class="k">then</span>
+</span><span class='line'>    <span class="n">Bullet</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="nb">math.atan2</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">y</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>Complexity in code comes from functions like this one. When you have lots of functions like this, your code tends to become unmanageable, especially if you return to it after not touching it for several months. It&#8217;s a code that you understand while you are writing, and certainly the machine understands it, but it doesn&#8217;t have &#8220;signposts&#8221; for future visitors. They have to &#8220;explore&#8221; it to know it.</p>
+<p>One option is to put a couple comments.</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">-- get nearest player within sight</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">t</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">,</span><span class="n">d</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">cd</span> <span class="o">=</span> <span class="nb">math.huge</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">p</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">Game</span><span class="p">.</span><span class="n">players</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">dx</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span>
+</span><span class='line'>    <span class="n">dy</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span>
+</span><span class='line'>    <span class="n">d</span> <span class="o">=</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">dy</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">cd</span> <span class="k">then</span>
+</span><span class='line'>      <span class="n">t</span> <span class="o">=</span> <span class="n">p</span>
+</span><span class='line'>      <span class="n">cd</span> <span class="o">=</span> <span class="n">d</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">-- shoot a bullet to the player</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">t</span> <span class="k">then</span>
+</span><span class='line'>    <span class="n">Bullet</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="nb">math.atan2</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">y</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>A much, much better solution is extracting those two &#8220;different things&#8221; into functions, ditch the comments, and use better names for the variable while you are at it.</p>
+<p>While you are doing this, you will suddenly realize that this function isn&#8217;t really making two things. It&#8217;s doing <strong><span class="caps">LOTS</span></strong> of things. Each one of those things belongs to a different function.</p>
+<p>Like this:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">target</span> <span class="o">=</span> <span class="n">self</span><span class="p">:</span><span class="n">getTarget</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">target</span> <span class="k">then</span> <span class="n">self</span><span class="p">:</span><span class="n">shootAt</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">getTarget</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">self</span><span class="p">:</span><span class="n">getNearest</span><span class="p">(</span><span class="n">Game</span><span class="p">.</span><span class="n">players</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">getNearest</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">distance</span><span class="p">,</span> <span class="n">nearest</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">shortestDistance</span> <span class="o">=</span> <span class="nb">math.huge</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">object</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">distance</span> <span class="o">=</span> <span class="n">self</span><span class="p">:</span><span class="n">getSquaredDistance</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="n">shortestDistance</span> <span class="k">then</span>
+</span><span class='line'>      <span class="n">nearest</span> <span class="o">=</span> <span class="n">object</span>
+</span><span class='line'>      <span class="n">shortestDistance</span> <span class="o">=</span> <span class="n">distance</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">nearest</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">getSquaredDistance</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">object</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">object</span><span class="p">.</span><span class="n">y</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">dx</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">dy</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">shootAt</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">Bullet</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">self</span><span class="p">:</span><span class="n">getAngle</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">Turret</span><span class="p">:</span><span class="n">getAngle</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">math.atan2</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>I&#8217;m sorry but I could not make <code>Turrent:getNearest</code> any smaller.</p>
+<p>Both programs do the same; for the machine, they are no different. But for programmers, they are so much easier to understand and maintain. Take a look at <code>Turret:update()</code>! Isn&#8217;t it just beautiful?</p>
+<p>And now that you have smaller functions, you can reuse them in other places. I could move getDistance and getAngle to a Vector class, for example. That way I could use code for calculating distances and angles in all <code>Enemies</code> and <code>Players</code>, not just in my <code>Turret</code> class.</p>
+<p>Notice that the <code>Turret</code> is prepared to attack players, but it&#8217;s very easy to subclass it now and create a turret that shoots other things, like asteroids. Actually, let me show you:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">AsteroidCleaningTurret</span> <span class="o">=</span> <span class="n">class</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">AsteroidCleaningTurret&#39;</span><span class="p">,</span> <span class="n">Turret</span><span class="p">)</span>
+</span><span class='line'><span class="k">function</span> <span class="nf">AsteroidCleaningTurret</span><span class="p">:</span><span class="n">getTarget</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">self</span><span class="p">:</span><span class="n">getNearest</span><span class="p">(</span><span class="n">Game</span><span class="p">.</span><span class="n">asteroids</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>That&#8217;s it. If I create an <code>AsteroidCleaningTurret</code>, it&#8217;ll start shooting asteroids. In 4 lines. If the code of <code>Turret:update()</code> was the first version, I would have had to fiddle much more in order to do this. It&#8217;s so easy to modify now! I could make a <code>DrunkenTurret</code> that calculates angles badly. Or one that shoots 4 bullets instead of just one. There&#8217;re so many places you can tweak!</p>
+<p>&#8230;</p>
+<p>And I guess I&#8217;ll just shut up now. I hope I made my point. Each function should do just one thing because that&#8217;s better for the Universe.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Enrique García Cota</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-16T01:19:00+01:00" pubdate data-updated="true">Mar 16<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kikito.github.com/blog/2012/03/16/small-functions-are-good-for-the-universe/" data-via="otikik" data-counturl="http://kikito.github.com/blog/2012/03/16/small-functions-are-good-for-the-universe/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/03/07/mcucsaop/" title="Previous Post:
+        MCUCSAOP">&laquo; MCUCSAOP</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/blog/2012/04/03/cool-stuff-vs-yak-shaving/"
+        title="Next Post: Cool Stuff vs Yak Shaving">Cool Stuff vs Yak Shaving
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    <section class="well for-nav">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/bootstrapping-a-mac-for-development/">Bootstrapping a mac for development</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/coding-with-an-accent/">Coding with an Accent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/09/installing-go-in-ubuntu/">Installing Go in Ubuntu using the PPA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/03/cool-stuff-vs-yak-shaving/">Cool Stuff vs Yak Shaving</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/16/small-functions-are-good-for-the-universe/">Small Functions are Good for the Universe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section class="well for-nav">
+  <ul id="tweets" class="nav nav-list">
+    <li class="nav-header">Latest Tweets</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      getTwitterFeed("otikik", 4, false);
+    });
+  </script>
+  <script src="/javascripts/asides/twitter.js" type="text/javascript"> </script>
+  <div class="nav-list">
+    
+      <a href="http://twitter.com/otikik" class="btn"><i class="icon-twitter"></i> Follow @otikik</a>
+    
+  </div>
+
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - Enrique García Cota -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'binary-solo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kikito.github.com/blog/2012/03/16/small-functions-are-good-for-the-universe/';
+        var disqus_url = 'http://kikito.github.com/blog/2012/03/16/small-functions-are-good-for-the-universe/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

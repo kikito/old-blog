@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: golang | Enrique García Cota]]></title>
+  <link href="http://kikito.github.com/blog/categories/golang/atom.xml" rel="self"/>
+  <link href="http://kikito.github.com/"/>
+  <updated>2012-07-29T14:19:23+02:00</updated>
+  <id>http://kikito.github.com/</id>
+  <author>
+    <name><![CDATA[Enrique García Cota]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Go in Ubuntu using the PPA]]></title>
+    <link href="http://kikito.github.com/blog/2012/05/09/installing-go-in-ubuntu/"/>
+    <updated>2012-05-09T00:16:00+02:00</updated>
+    <id>http://kikito.github.com/blog/2012/05/09/installing-go-in-ubuntu</id>
+    <content type="html"><![CDATA[<p>I've recently started getting interested in <a href="http://golang.org">Go</a> (also known as <em>golang</em>), one of the new programming languages being developed by Google (another one is <a href="http://www.dartlang.org/">DART</a> , but I'm not interested in that one. Yet).</p>
+
+<p>One of the first hurdles I have encontered is that the <a href="http://golang.org/doc/install#freebsd_linux">installation instructions</a> seem incomplete, at least for Ubuntu.
+They tell you to go and download the source code and compile it on your machine. While I'm not afraid of compiling stuff myself, I'm not so fond of maintaining the compiled programs up-to-date manually. It reminds me of windows, brr.</p>
+
+<p>When I'm trying new software I always try to find:</p>
+
+<p>a) The official apt-package with <code>apt-cache search</code>, which will manage the updates for me, or
+b) A <a href="http://www.makeuseof.com/tag/ubuntu-ppa-technology-explained/">ppa</a> , which is basically the same thing, except that
+   instead of an "official" unkown Ubuntu guy these updates are managed by an unkown guy.</p>
+
+<p>I tried to find a ppa for golang and, lo and behold! <a href="https://launchpad.net/~gophers/+archive/go">There is one</a>, and it seems reasonably official!</p>
+
+<p>Since the official instructions don't mention how to use this wonderful resource, allow me:</p>
+
+<p><code>bash Install golang-stagle from the gophers/go ppa
+sudo add-apt-repository ppa:gophers/go
+sudo apt-get update
+sudo apt-get install golang-stable
+</code></p>
+
+<p>Easy peasy! No compilations or anything needed. And when Go gets a new version, you will receive it as a software update. Cool!</p>
+
+<p>One minor thing though - Go expects you to have defined a <code>GOPATH</code> environment variable. This variable should point to a place where the Go libraries ("packages", in
+Go lingo) are installed. For newbies (like me) it's better if it's a folder inside your home directory.</p>
+
+<p>So it's just a matter of creating it! (I name it <code>.go</code> so it is invisible by default, but you may want to make it more public). Notice that there is no <code>sudo</code> on this line.</p>
+
+<p><code>bash
+mkdir $HOME/.go
+</code></p>
+
+<p>Finally, create the environment variable. Add this to your .bashrc, .zshrc or equivalent file, depending on whether you use bash, zsh or other shells.</p>
+
+<p><code>bash
+export GOPATH=$HOME/.go
+</code></p>
+
+<p>The next console you open will be prepared to execute go!</p>
+
+<p>That's all for now. Go get some go!</p>
+]]></content>
+  </entry>
+  
+</feed>

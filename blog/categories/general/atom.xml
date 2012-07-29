@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: general | Enrique García Cota]]></title>
+  <link href="http://kikito.github.com/blog/categories/general/atom.xml" rel="self"/>
+  <link href="http://kikito.github.com/"/>
+  <updated>2012-07-29T14:19:23+02:00</updated>
+  <id>http://kikito.github.com/</id>
+  <author>
+    <name><![CDATA[Enrique García Cota]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Starting the blog with Octopress]]></title>
+    <link href="http://kikito.github.com/blog/2012/03/06/starting-the-blog-with-octopress/"/>
+    <updated>2012-03-06T00:22:00+01:00</updated>
+    <id>http://kikito.github.com/blog/2012/03/06/starting-the-blog-with-octopress</id>
+    <content type="html"><![CDATA[<p>Hi there!</p>
+
+<p>I'll start writing here very soon. First I need to find some nice defaults.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrapping a mac for development - Enrique García Cota</title>
+  <meta name="author" content="Enrique García Cota">
+
+  
+  <meta name="description" content="I recently acquired a new development machine &#8211; A Mac Book Air. I had been resisting it for quite some time now.
+It is a very fine machine, but &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kikito.github.com/blog/2012/07/26/bootstrapping-a-mac-for-development">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/kikito.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Enrique García Cota" type="application/atom+xml">
+  
+  
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn-navbar-plus hidden-desktop" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-plus"></i></a>
+
+      <h1>
+        <a class="brand" href="/">Enrique García Cota</a>
+      </h1>
+      <h2 class="sub-brand visible-desktop">Freelance Ruby on Rails developer</h2>
+
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+  <li><a href="/">Blog</a></li>
+  <li class="visible-desktop"><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><i class="icon-rss"></i></a></li>
+</ul>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    <h1 class="entry-title">
+      <a href="">Liquid error: undefined method `titlecase' for nil:NilClass</a>
+      
+      <span class="pull-right hidden-phone meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-26T18:48:00+02:00" pubdate data-updated="true">Jul 26<span>th</span>, 2012</time>
+        
+        / <a href="#disqus_thread">Comments</a>
+        
+      </span>
+      
+    </h1>
+  </header>
+
+
+<div class="entry-content"><p>I recently acquired a new development machine &#8211; A Mac Book Air. I had been resisting it for quite some time now.</p>
+<p>It is a very fine machine, but I&#8217;m not familiar with its operative system (I used to use Ubuntu on a custom-made PC).</p>
+<p>I&#8217;ve spent a couple days installing and configuring it for development usage (mostly Ruby on Rails). Here&#8217;s what I&#8217;ve done so far:</p>
+<h3>Locate the terminal</h3>
+<p>I was able to find the terminal using the &#8220;find tool&#8221; (a little magnifier glass near the top right of the screen) and typing &#8220;terminal&#8221;. Once I clicked on it, it appeared on the Dock. I &#8220;left-clicked&#8221; (clicked with two fingers) on it to display a contextual menu. I choose <code>Options &gt; Keep in Dock</code> so I didn&#8217;t have to look for it again.</p>
+<h3>Upgraded the Operative System</h3>
+<p>A new version of <span class="caps">OSX</span> (codename &#8220;Mountain Lion&#8221;) had been released the day before my laptop arrived. Knowing that updates do sometimes provoke conflict with installed software, the first thing I did after booting up the machine was upgrading its operative system.</p>
+<p><span class="caps">OSX</span> comes with a software called &#8220;App Store&#8221;. The upgrade was sold there, and was prominently advertised as well. If you have ever installed one application in a smartphone, the procedure was very similar &#8211; downloading the operative system took some time, since it weighted 4GB.</p>
+<p>After the download finished, the computer requested a reboot. I noticed a couple issues:</p>
+<ul>
+	<li>Mointain Lion comes with a new security &#8220;feature&#8221; that blocks installing software that doesn&#8217;t come from the App Store &#8211; If <span class="caps">OSX</span> complains that &#8220;the developer is using an unkonwn signature&#8221; or something similar, activate the corresponding option in <code>Apple Menu &gt; System Preferences &gt; Security &amp; Privacy &gt; Allow Applications downloaded from: Anywhere</code>.</li>
+	<li>I also noticed later on that the encoding is not set by default. This gave me issues later on when I started using ruby and Unicode stuff. In order to fix this, you must remember to add the following to your .profile/.bashrc/.zshrc:<br />
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+</span><span class='line'><span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8
+</span></code></pre></td></tr></table></div></figure></div></notextile></li>
+</ul>
+<h3>Install gcc for <span class="caps">OSX</span></h3>
+<p>Macs come with no compiler installed by default. From what I could understand, the development environment is called &#8220;XCode&#8221;. It&#8217;s a big download, another 4GB (later on I found some claims that you don&#8217;t need to download the whole XCode; the compiler can apparently be downloaded separately.</p>
+<p>However, I opted for an alternative approach: I used <a href="https://github.com/kennethreitz/osx-gcc-installer/">gcc-for-osx</a> . Installing it is very straightforward; download, double-click business.</p>
+<h3>Install ruby</h3>
+<p>Once the compiler is in place, you can install ruby. The recommended way to do that is via a ruby version manager. There are two main ones: <code>rvm</code> and <code>rbenv</code>. My personal preference is the former.</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://get.rvm.io | bash -s stable --ruby
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>Once the process finishes downloading and compiling, it is usually a good idea to set the default ruby version. At the time of this writing, it is ruby 1.9.3. So I did this:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">source</span> ~/.bashrc
+</span><span class='line'>rvm use 1.9.3 --default
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>Once this is done, you should be able to execute <code>ruby --version</code> and obtain &#8216;1.9.3&#8217;.</p>
+<p>I later on installed ruby 1.9.2 since I need it for this blog (which is done in <a href="http://octopress.org">octopress</a> , and it does not work in ruby 1.9.3).</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm install 1.9.2
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<h3>Install homebrew</h3>
+<p>Homebrew is a tool for installing packages from the command line. I think of it as an &#8220;very limited apt-tools package&#8221;. But it&#8217;s the best there is on <span class="caps">OSX</span>, so you might as well install it. Here&#8217;s how you do it:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/ruby -e <span class="s2">&quot;$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)&quot;</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>Once homebrew is installed, you can use it to install other useful packages. For example, git and wget:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span><span class='line'>brew install wget
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<h3>Vim</h3>
+<p>Another thing I needed was a better console, and a decent source code editor. I am used to Vim in Ubuntu, so the natural choice in <span class="caps">OSX</span> is using <a href="http://code.google.com/p/macvim/">macvim</a> .</p>
+<p>Homebrew has a recipe for installing vim, but it doesn&#8217;t work if you have installed gcc instead of XCode, as I&#8217;ve done. So I had to download it from the website, and manually create a couple aliases (It is explained in the <span class="caps">README</span> file which comes with the download).</p>
+<p>I&#8217;m very happy to report that <a href="https://github.com/kikito/adegan">Adegan</a>, my custom Vim configuration, seems to have work very well in macvim. To install it I had to use the same command I use in Ubuntu:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -Lo- https://raw.github.com/kikito/adegan/master/scripts/bootstrap.sh | bash
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<h3>iterm2 and zsh</h3>
+<p>The default terminal emulator is quite alright, but since I was experimenting, I decided to install it&#8217;s &#8220;cool replacement&#8221;, called <a href="http://www.iterm2.com">iterm2</a> . Again, this was a matter of downloading and double clicking, and then dragging to the Applications folder. Oh, and sticking it into the Dock.</p>
+<p>Then I installed zsh, a replacement for bash. I did so from brew:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install zsh
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>Then I had to tell iterm2 to use zsh by default. That is done via this command:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chsh -s /bin/zsh
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>Next time a console is opened, it will use zsh instead of bash.</p>
+<p>I then installed ohmyzsh:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>It seems that the version I installed by default sets the theme to &#8220;random&#8221;. I edited the <code>~/.zshrc</code> file and set it to &#8220;robbyrussell&#8221;, which I&#8217;m used to.</p>
+<h3>Overall experience</h3>
+<p>I find that, in terms of installation and configuration, <span class="caps">OSX</span> is intermediate. It is not as bad as Windows, where each piece of software is installed and updated independently, but it is also not as pleasant as Ubuntu, where almost everything is centralized via apt.</p>
+<p>I found that some applications required &#8220;double clicking&#8221; to be installed, others had to be &#8220;extracted and copied to the Applications folder&#8221;, while others had an &#8220;special window&#8221; where you could drag the application icon to applications. And then there is the App Store, and Homebrew.</p>
+<p>I am also adapting to the US keyboard layout, and doing some experiments. I might post about that soon.</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Enrique García Cota</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-26T18:48:00+02:00" pubdate data-updated="true">Jul 26<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac/'>mac</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kikito.github.com/blog/2012/07/26/bootstrapping-a-mac-for-development/" data-via="otikik" data-counturl="http://kikito.github.com/blog/2012/07/26/bootstrapping-a-mac-for-development/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="small"></div>
+  
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/blog/2012/07/19/coding-with-an-accent/" title="Previous Post:
+        Coding with an Accent">&laquo; Coding with an Accent</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+<aside class="sidebar-nav span3">
+  
+    <section class="well for-nav">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/bootstrapping-a-mac-for-development/">Bootstrapping a mac for development</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/coding-with-an-accent/">Coding with an Accent</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/09/installing-go-in-ubuntu/">Installing Go in Ubuntu using the PPA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/03/cool-stuff-vs-yak-shaving/">Cool Stuff vs Yak Shaving</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/16/small-functions-are-good-for-the-universe/">Small Functions are Good for the Universe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section class="well for-nav">
+  <ul id="tweets" class="nav nav-list">
+    <li class="nav-header">Latest Tweets</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      getTwitterFeed("otikik", 4, false);
+    });
+  </script>
+  <script src="/javascripts/asides/twitter.js" type="text/javascript"> </script>
+  <div class="nav-list">
+    
+      <a href="http://twitter.com/otikik" class="btn"><i class="icon-twitter"></i> Follow @otikik</a>
+    
+  </div>
+
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2012 - Enrique García Cota -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'binary-solo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://kikito.github.com/blog/2012/07/26/bootstrapping-a-mac-for-development/';
+        var disqus_url = 'http://kikito.github.com/blog/2012/07/26/bootstrapping-a-mac-for-development/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
