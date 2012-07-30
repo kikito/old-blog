@@ -24,10 +24,6 @@ article header .meta {
   padding: 8px 0;
 }
 
-.navbar-inner {
-  background-image: none;
-}
-
 .navbar {
   .brand{
     margin: 0;
@@ -79,7 +75,7 @@ article header .meta {
 
 @media (min-width: 980px) {
   body {
-    padding-top: 170px;
+    padding-top: $navbarHeight + 30px;
   }
   .navbar {
     .container {

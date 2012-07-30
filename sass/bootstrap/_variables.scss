@@ -142,7 +142,7 @@ $hrBorder:                $grayLighter !default;
 // -------------------------
 $navbarHeight:                    125px !default;
 $navbarBackground:                $yellow !default;
-$navbarBackgroundHighlight:       $yellow !default;
+$navbarBackgroundHighlight:       lighten($yellow, 25%) !default;
 
 $navbarText:                      $black !default;
 $navbarLinkColor:                 $white !default;
