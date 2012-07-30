@@ -25,8 +25,22 @@ article header .meta {
 }
 
 .navbar {
+
+  a {
+    @include transition-property(all);
+    @include transition-duration(500ms);
+    @include transition-timing-function(ease-in-out);
+  }
+
   .brand{
     margin: 0;
+    color: $navbarLinkColor;
+    &:hover {
+      color: $navbarLinkColorHover;
+    }
+    &:active {
+      color: $navbarLinkColorActive;
+    }
   }
   .sub-brand {
     position: absolute;
@@ -34,7 +48,7 @@ article header .meta {
     color: black;
     font-size: 1.2em;
     font-weight: 200;
-    padding: 10px 23px;
+    padding: 0 22px;
   }
   .nav > li > a {
     @include centerOnNav(20px);
@@ -45,16 +59,13 @@ article header .meta {
   }
   .btn-navbar-plus {
     @include centerOnNav(65px);
-    @include transition-property(all);
-    @include transition-duration(500ms);
-    @include transition-timing-function(ease-in-out);
-    color: white;
+    color: $navbarLinkColor;
     text-align: center;
     display: block;
     float: right;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     &:hover {
-      color: black;
+      color: $navbarLinkColorHover;
     }
     i {
       cursor: pointer;
@@ -63,26 +74,26 @@ article header .meta {
   }
   .btn-navbar-plus.open {
     @include rotate(135deg);
-    color: black;
+    color: $navbarLinkColorActive;
   }
 
 }
 
 
 @media (min-width: 481px) and (max-width: 979px) {
-  .navbar .brand { @include centerOnNav(40px); }
+  .navbar .brand { @include centerOnNav(30px); }
 }
 
 @media (min-width: 980px) {
   body {
-    padding-top: $navbarHeight + 30px;
+    padding-top: $navbarHeight + 25px;
   }
   .navbar {
     .container {
       width: 100%;
     }
     .brand {
-      @include centerOnNav(50px);
+      @include centerOnNav(40px);
     }
   }
 }
