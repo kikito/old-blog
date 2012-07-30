@@ -48,7 +48,7 @@ article header .meta {
     color: black;
     font-size: 1.2em;
     font-weight: 200;
-    padding: 0 22px;
+    padding: 9px 22px;
   }
   .nav > li > a {
     @include centerOnNav(20px);
@@ -94,6 +94,7 @@ article header .meta {
     }
     .brand {
       @include centerOnNav(40px);
+      padding-top: 20px; // making space for the subtitle
     }
   }
 }
