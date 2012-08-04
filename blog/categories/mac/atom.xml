@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | Enrique García Cota]]></title>
   <link href="http://kikito.github.com/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://kikito.github.com/"/>
-  <updated>2012-08-02T00:46:28+02:00</updated>
+  <updated>2012-08-04T20:10:18+02:00</updated>
   <id>http://kikito.github.com/</id>
   <author>
     <name><![CDATA[Enrique García Cota]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Typing Spanish Letters in a U.S. mac keyboard]]></title>
+    <link href="http://kikito.github.com/blog/2012/08/03/typing-spanish-letters-in-a-us-mac-keyboard/"/>
+    <updated>2012-08-03T11:15:00+02:00</updated>
+    <id>http://kikito.github.com/blog/2012/08/03/typing-spanish-letters-in-a-us-mac-keyboard</id>
+    <content type="html"><![CDATA[<p>I have already mentioned that I've purchased a new Mac Book Air. I'm still adapting to it, but I wanted to share some of the things I learned from that adaptation. One of the things I'm learning to cope with is the U.S. keyboard layout that I picked.</p>
+
+<p>The U.S. layout is great for what I do most of the time: I either program, or write in English.</p>
+
+<p>But I am from Spain. Sometimes I must interact in Spanish. That foolish language contains all the English glyphs, and then adds all these: áéíóúüÁÉÍÓÚÜ¿!ñÑ.</p>
+
+<p>The U.S. layout is <em>capable</em> of producing them, but it isn't a great experience.</p>
+
+<p>I enquired some mac-savy colleages who where in the same situation I was, and they basically gave me two options:</p>
+
+<ul>
+<li>I could "switch" between the U.S. and Spanish layout, when I needed to write either language.</li>
+<li>I could also keep the U.S. layout only, and "jump through its hoops" when I needed to produce Spanish letters. In other words, "man up".</li>
+</ul>
+
+
+<p>I dismissed the first option right away. I didn't want to keep switching layouts. That is not operative for me.</p>
+
+<p>I gave the second option a try and, as it can be inferred from the text above, the results were not great. I felt like I needed too many keystrokes to produce characters that, when I'm writing in Spanish, are fairly common. And I have other places to "man up" first (for example, the 20-or-so basic movement commands in vim).</p>
+
+<p>So, none of the options given was satisfying. I had to produce a third option.</p>
+
+<p>And I did! Ladies and gentlemen, let me give you:</p>
+
+<p>h2. "us-4-es.keylayout":https://github.com/kikito/us-4-es.keylayout</p>
+
+<p>This keyboard layout is especially thought for people in my same situation; people with a US layout who need to write in Spanish from time to time, and who don't want to keep switching layouts.</p>
+
+<p>It behaves exactly like the default U.S. layout on "normal" and "uppercase" mode. So when writing in English or programming, your keyboard will feel the same.</p>
+
+<p>Changes affect the "alt-mode" though. Some of the keys work differently when the "option key" is pressed. For example, "option-a" will produce "á", "option-e" will produce "é", and so on.</p>
+
+<p>You might find a list of all the modifications and instructions on how to install in "the project's github page":https://github.com/kikito/us-4-es.keylayout .</p>
+
+<p>Please feel free to comment here if you have any questions/suggestions. If you find any issues, please create an issue on github instead.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bootstrapping a mac for development]]></title>
